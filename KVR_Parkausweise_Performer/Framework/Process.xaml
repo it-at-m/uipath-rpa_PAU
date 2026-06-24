@@ -1,0 +1,1557 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_bool_testMode" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,641</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Text</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="810.8000000000001,23558.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_mailID" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mail_messages" />
+      <Variable x:TypeArguments="snm:MailMessage" Name="mail_message" />
+      <Variable x:TypeArguments="x:String" Name="str_sharedmailbox" />
+      <Variable x:TypeArguments="x:String" Name="str_mailfolderSuccess" />
+      <Variable x:TypeArguments="x:String" Name="str_mailfolderFailed" />
+      <Variable x:TypeArguments="x:String" Name="str_reference" />
+      <Variable x:TypeArguments="x:String" Name="str_pathdownload" />
+      <Variable x:TypeArguments="x:String" Name="str_case" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="624,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="624,23283.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="Process KVR Parkausweise" sap:VirtualizedContainerService.HintSize="622.4,21516" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="str_mailfolderinbox" />
+            <Variable x:TypeArguments="x:Boolean" Name="bool_xmlDataExists" />
+            <Variable x:TypeArguments="sd:DataTable" Name="dt_xmlData" />
+            <Variable x:TypeArguments="scg:List(x:String)" Name="lst_validationErrors" />
+            <Variable x:TypeArguments="scg:List(x:String)" Name="lst_vespaErrors" />
+            <Variable x:TypeArguments="x:String" Name="str_mailfolderInProgress" />
+            <Variable x:TypeArguments="x:Boolean" Name="bool_numberCorrected" />
+            <Variable x:TypeArguments="x:String" Name="str_telefonnummer" />
+            <Variable x:TypeArguments="x:String" Name="str_parkID" />
+            <Variable x:TypeArguments="x:String" Name="str_nachname" />
+            <Variable x:TypeArguments="x:String" Name="str_vorname" />
+            <Variable x:TypeArguments="x:String" Name="str_geburtsdatum" />
+            <Variable x:TypeArguments="x:String" Name="str_geschlecht" />
+            <Variable x:TypeArguments="x:String" Name="str_kennzeichen1" />
+            <Variable x:TypeArguments="x:String" Name="str_kennzeichen2" />
+            <Variable x:TypeArguments="x:String" Name="str_kennzeichen3" />
+            <Variable x:TypeArguments="x:String" Name="str_lizenzdauer" />
+            <Variable x:TypeArguments="x:String" Name="str_antragsdatum" />
+            <Variable x:TypeArguments="x:String" Name="str_email" />
+            <Variable x:TypeArguments="x:String" Name="str_einwilligungEmail" />
+            <Variable x:TypeArguments="x:String" Name="str_mailfolderPostversand" />
+            <Variable x:TypeArguments="scg:List(x:String)" Name="lst_vespaSuccessMessages" />
+            <Variable x:TypeArguments="x:Boolean" Name="bool_success" />
+            <Variable x:TypeArguments="s:String[]" Name="arr_titel" />
+            <Variable x:TypeArguments="x:Boolean" Name="bool_halterbescheinigung" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign DisplayName="Multiple Assign - workflow variables" sap:VirtualizedContainerService.HintSize="588.8,403.2" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_mailID]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("MailID").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_mailfolderinbox]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[config("MailfolderInbox").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_sharedmailbox]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[config("SharedMailbox").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_pathdownload]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[Config("pathdownload").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_mailfolderSuccess]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[Config("MailfolderSuccess").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_mailfolderFailed]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[config("MailfolderFailed").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_reference]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_TransactionItem.Reference]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_case]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_24">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_mailfolderPostversand]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[config("MailfolderPostversand").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="create_tmp_folder - Invoke Workflow File (utils\create_tmp_folder.xaml)" sap:VirtualizedContainerService.HintSize="588.8,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\create_tmp_folder.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_pathdownload">[str_pathdownload]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="mail_get_mail_messages - Invoke Workflow File (Mail\mail_get_mail_messages.xaml)" sap:VirtualizedContainerService.HintSize="588.8,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_get_mail_messages.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_mailFolder">[str_mailfolderinbox]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_sharedMailbox">[str_sharedmailbox]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_mailID">[str_mailID]</InArgument>
+              <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_mailMessages">[mail_messages]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <If Condition="[mail_messages.count=1]" DisplayName="If one mail message found for mail ID" sap:VirtualizedContainerService.HintSize="588.8,557.6" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Assign - mail_message" sap:VirtualizedContainerService.HintSize="416,169.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="snm:MailMessage">[mail_message]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="snm:MailMessage">[mail_messages(0)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw - AppEx no mail found for mail ID" Exception="[new ApplicationException(&quot;Mail with mail id &quot;+str_mailID+ &quot;not found in mail folder &quot;+str_mailfolderinbox+&quot; in shared mailbox &quot;+str_sharedmailbox)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="mail_get_mail_attachments - Invoke Workflow File (Mail\mail_get_mail_attachments.xaml)" sap:VirtualizedContainerService.HintSize="588.8,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_get_mail_attachments.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_mail_message">[mail_message]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_pathdownload">[str_pathdownload]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:FileExistsX DisplayName="File Exists - xml download path" Exists="[bool_xmlDataExists]" sap:VirtualizedContainerService.HintSize="588.8,170.4" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[str_pathdownload+&quot;\&quot;+&quot;XML-Daten.xml&quot;]" />
+          <If Condition="[bool_xmlDataExists]" DisplayName="If downloaded xml exists" sap:VirtualizedContainerService.HintSize="588.8,564" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,240" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="read_xml_data - Invoke Workflow File (utils\read_xml_data.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\read_xml_data.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_pathXMLData">[str_pathdownload+"\"+"XML-Daten.xml"]</InArgument>
+                    <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_xpathExpressions">[dt_xmlData]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw - Mail does not contain xml data" Exception="[new BusinessRuleException(&quot;Die E-Mail enthält keine XML-Daten.xml Datei&quot;)]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_2" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="validate_xml_data1 - Invoke Workflow File (utils\validate_xml_data1.xaml)" sap:VirtualizedContainerService.HintSize="588.8,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\validate_xml_data.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_halterbescheinigung">[bool_halterbescheinigung]</OutArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_xmlData">[dt_xmlData]</InArgument>
+              <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_validationErrors">[lst_validationErrors]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <If Condition="[lst_validationErrors.Count&gt;0]" DisplayName="If - Validation errors found in xml" sap:VirtualizedContainerService.HintSize="588.8,348.8" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw - Validation errors BRE" Exception="[new BusinessRuleException(&quot;Der Bewohnerparkausweisantrag ist nicht mittels RPA prozessierbar. Folgende Validierungsfehler sind aufgetreten:&quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_validationErrors))]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_3" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:MultipleAssign DisplayName="Multiple Assign - xml case variables" sap:VirtualizedContainerService.HintSize="588.8,590.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_case]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[dt_xmlData.Select("Variable ='antragstyp'")(0)("Value").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_telefonnummer]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'telefonnummer'").Length&gt;0, dt_xmlData.Select("Variable = 'telefonnummer'")(0)("Value").ToString.Trim,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_parkID]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[dt_xmlData.Select("Variable ='park_id'")(0)("Value").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_nachname]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'familienname'").Length&gt;0, dt_xmlData.Select("Variable = 'familienname'")(0)("Value").ToString,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_vorname]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'vorname'").Length&gt;0, dt_xmlData.Select("Variable = 'vorname'")(0)("Value").ToString,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_geburtsdatum]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(dt_xmlData.Select("Variable = 'geburtsdatum'").Length&gt;0, 
+datetime.ParseExact(dt_xmlData.Select("Variable = 'geburtsdatum'")(0)("Value").ToString,"yyyy-MM-dd",System.Globalization.CultureInfo.InvariantCulture).ToString("dd.MM.yyyy"),"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_geschlecht]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'geschlecht'").Length&gt;0, dt_xmlData.Select("Variable = 'geschlecht'")(0)("Value").ToString,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen1]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'kennzeichen1'").Length&gt;0, dt_xmlData.Select("Variable = 'kennzeichen1'")(0)("Value").ToString,"").Replace("-"," ")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen2]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'kennzeichen2'").Length&gt;0, dt_xmlData.Select("Variable = 'kennzeichen2'")(0)("Value").ToString,"").Replace("-"," ")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen3]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[if(dt_xmlData.Select("Variable = 'kennzeichen3'").Length&gt;0, dt_xmlData.Select("Variable = 'kennzeichen3'")(0)("Value").ToString,"").Replace("-"," ")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_lizenzdauer]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(dt_xmlData.Select("Variable = 'lizenzdauer2'").Length&gt;0, dt_xmlData.Select("Variable = 'lizenzdauer2'")(0)("Value").ToString,"") +
+If(dt_xmlData.Select("Variable = 'lizenzdauer1'").Length&gt;0, dt_xmlData.Select("Variable = 'lizenzdauer1'")(0)("Value").ToString,"") +
+If(dt_xmlData.Select("Variable = 'lizenzdauer3'").Length&gt;0, dt_xmlData.Select("Variable = 'lizenzdauer3'")(0)("Value").ToString,"") +
+If(dt_xmlData.Select("Variable = 'lizenzdauer4'").Length&gt;0, dt_xmlData.Select("Variable = 'lizenzdauer4'")(0)("Value").ToString,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_antragsdatum]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'antragsdatum'").Length&gt;0, dt_xmlData.Select("Variable = 'antragsdatum'")(0)("Value").ToString.split(" "c)(0).Trim,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_22">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_email]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'mailadresse'").Length&gt;0, dt_xmlData.Select("Variable = 'mailadresse'")(0)("Value").ToString.Trim,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_23">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_einwilligungEmail]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(dt_xmlData.Select("Variable = 'datenschutz2'").Length&gt;0, dt_xmlData.Select("Variable = 'datenschutz2'")(0)("Value").ToString.Trim,"")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_25">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="s:String[]">[arr_titel]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="s:String[]">[Config("rpa010_ReplaceTitel").ToString.split(";"c)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="util_replace_titel_in_nachnamen - Invoke Workflow File (utils\util_replace_titel_in_nachnamen.xaml)" sap:VirtualizedContainerService.HintSize="588.8,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_62" UnSafe="False" WorkflowFileName="utils\util_replace_titel_in_nachnamen.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_titel">[arr_titel]</InArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="io_str_nachname">[str_nachname]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:MultipleAssign DisplayName="Multiple Assign - remove diakritische Zeichen" sap:VirtualizedContainerService.HintSize="588.8,184" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_nachname]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.Text.RegularExpressions.Regex.Replace( _
+    (str_nachname _
+        .Replace("ä","__ae__") _
+        .Replace("Ä","__Ae__") _
+        .Replace("ö","__oe__") _
+        .Replace("Ö","__Oe__") _
+        .Replace("ü","__ue__") _
+        .Replace("Ü","__Ue__") _
+        .Normalize(System.Text.NormalizationForm.FormD)), _
+    "\p{Mn}", "") _
+    .Replace("__ae__","ä") _
+    .Replace("__Ae__","Ä") _
+    .Replace("__oe__","ö") _
+    .Replace("__Oe__","Ö") _
+    .Replace("__ue__","ü") _
+    .Replace("__Ue__","Ü")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_27">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_vorname]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.Text.RegularExpressions.Regex.Replace( _
+    (str_vorname _
+        .Replace("ä","__ae__") _
+        .Replace("Ä","__Ae__") _
+        .Replace("ö","__oe__") _
+        .Replace("Ö","__Oe__") _
+        .Replace("ü","__ue__") _
+        .Replace("Ü","__Ue__") _
+        .Normalize(System.Text.NormalizationForm.FormD)), _
+    "\p{Mn}", "") _
+    .Replace("__ae__","ä") _
+    .Replace("__Ae__","Ä") _
+    .Replace("__oe__","ö") _
+    .Replace("__Oe__","Ö") _
+    .Replace("__ue__","ü") _
+    .Replace("__Ue__","Ü")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <ui:MultipleAssign DisplayName="Multiple Assign - remove H or E in Kennzeichen" sap:VirtualizedContainerService.HintSize="588.8,216" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen1]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[system.text.RegularExpressions.Regex.replace(str_kennzeichen1, "[EH]$","")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen2]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[system.text.RegularExpressions.Regex.replace(str_kennzeichen2, "[EH]$","")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_30">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str_kennzeichen3]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[system.text.RegularExpressions.Regex.replace(str_kennzeichen3, "[EH]$","")]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <If Condition="[str_case=&quot;Fahrzeugwechsel&quot; and str_lizenzdauer=&quot;Restlaufzeit - 10 Euro&quot;]" DisplayName="If Interne Bearbeitung Infotextänderung needed (Fahrzeugwechsel + Lizenzlaufzeit Übernahme)" sap:VirtualizedContainerService.HintSize="588.8,2851.2" sap2010:WorkflowViewState.IdRef="If_27">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="555.2,2619.2" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_interne_bearbeitung_infotextaenderung - Invoke Workflow File (VESPA\vespa_select_interne_bearbeitung_infotextaenderung.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_45" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_select_interne_bearbeitung_infotextaenderung.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_search_parklizenznummer - Invoke Workflow File (VESPA\vespa_search_parklizenznummer.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_46" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_search_parklizenznummer.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_parklizenznummer">[str_parkID]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_47" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Suche aktuell</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_48" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after searching parklizenznummer" sap:VirtualizedContainerService.HintSize="521.6,348.8" sap2010:WorkflowViewState.IdRef="If_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,181.6" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Parklizenznummer search BRE" Exception="[new BusinessRuleException(&quot;Bei der Suche der Parklizenznummer für die Interne Bearbeitung-&gt;Infotextänderung des Parkausweises sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="416,117.6" sap2010:WorkflowViewState.IdRef="Throw_13" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_update_infotext - Invoke Workflow File (VESPA\vespa_update_infotext.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_49" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_update_infotext.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_einwilligungEmail">[str_einwilligungEmail]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_email">[str_email]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_50" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Infotextänderung</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_success_messages - Invoke Workflow File (VESPA\vespa_check_success_messages.xaml)" sap:VirtualizedContainerService.HintSize="521.6,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_51" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_success_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaSuccessMessages">[lst_vespaSuccessMessages]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaSuccessMessages.Contains(&quot;0185: Der Satz wurde verändert.&quot;)]" sap:VirtualizedContainerService.HintSize="521.6,912.8" sap2010:WorkflowViewState.IdRef="If_29">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,94.4" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,684.8" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_52" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after Infotextänderung" sap:VirtualizedContainerService.HintSize="449.6,418.4" sap2010:WorkflowViewState.IdRef="If_30">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Throw DisplayName="Throw - InfotextänderungBRE" Exception="[new BusinessRuleException(&quot;Nach der Infotextänderung über die interne Bearbeitung sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_14" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="555.2,89.6" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[str_case=&quot;Wohnsitzwechsel&quot; or  (str_case=&quot;Fahrzeugwechsel&quot; and str_lizenzdauer&lt;&gt;&quot;Restlaufzeit - 10 Euro&quot;)]" DisplayName="If - Wohnsitzwechsel or Fahrzeugwechsel and Restlaufzeit 10 Euro" sap:VirtualizedContainerService.HintSize="588.8,2915.2" sap2010:WorkflowViewState.IdRef="If_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="550.4,2661.6" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_genehmigung_rueckgabe - Invoke Workflow File (VESPA\vespa_select_genehmigung_rueckgabe.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_31" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_select_genehmigung_rueckgabe.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_search_parklizenznummer - Invoke Workflow File (VESPA\vespa_search_parklizenznummer.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_search_parklizenznummer.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_parklizenznummer">[str_parkID]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Suche aktuell</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after searching parklizenznummer" sap:VirtualizedContainerService.HintSize="516.8,427.2" sap2010:WorkflowViewState.IdRef="If_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Parklizenznummer search BRE" Exception="[new BusinessRuleException(&quot;Bei der Suche der Parklizenznummer für die Rückgabe des Parkausweises sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_9" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_58" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Rückgabe</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_success_messages - Invoke Workflow File (VESPA\vespa_check_success_messages.xaml)" sap:VirtualizedContainerService.HintSize="516.8,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_43" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_success_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaSuccessMessages">[lst_vespaSuccessMessages]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaSuccessMessages.Contains(&quot;0235: Der Satz wurde beendet.&quot;)]" sap:VirtualizedContainerService.HintSize="516.8,936" sap2010:WorkflowViewState.IdRef="If_25">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,89.6" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,684.8" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after Rückgabe" sap:VirtualizedContainerService.HintSize="449.6,418.4" sap2010:WorkflowViewState.IdRef="If_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Throw DisplayName="Throw - Rückgabe BRE" Exception="[new BusinessRuleException(&quot;Bei der Rückgabe der Parklizenznummer sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_10" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="550.4,83.2" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[str_case=&quot;Wohnsitzwechsel&quot; Or&#xA;str_case=&quot;Antrag auf Bewohnerparkausweis&quot; Or &#xA;(str_case=&quot;Fahrzeugwechsel&quot; and str_lizenzdauer&lt;&gt;&quot;Restlaufzeit - 10 Euro&quot;)]" DisplayName="If - Wohnsitzwechsel, Antrag auf Bewohnerparkausweis or Fahrzeugwechsel no Restlaufzeit" sap:VirtualizedContainerService.HintSize="588.8,2183.2" sap2010:WorkflowViewState.IdRef="If_19">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="488.8,1923.2" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_parkausweis_mit_hauptwohnsitz - Invoke Workflow File (VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_search_antragsteller - Invoke Workflow File (VESPA\vespa_search_antragsteller.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_search_antragsteller.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_nachname">[str_nachname]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_vorname">[str_vorname]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_geburtsdatum">[str_geburtsdatum]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_geschlecht">[str_geschlecht]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_kennzeichen">[str_kennzeichen1]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Erfassen</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_search_success - Invoke Workflow File (VESPA\vespa_check_search_success.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_search_success.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after Erfassen Parkausweis" sap:VirtualizedContainerService.HintSize="449.6,427.2" sap2010:WorkflowViewState.IdRef="If_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Erfassen Parkausweis BRE" Exception="[new BusinessRuleException(&quot;Bei der Suche des Antragstellers sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_fahrzeug1 - Invoke Workflow File (VESPA\vespa_select_fahrzeug1.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_57" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_select_fahrzeug1.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">1</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_validate_fahrzeug - Invoke Workflow File (VESPA\vespa_validate_fahrzeug.xaml)" sap:VirtualizedContainerService.HintSize="449.6,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_56" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_validate_fahrzeug.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">1</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="488.8,89.6" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[str_case=&quot;Fahrzeugwechsel&quot; and str_lizenzdauer=&quot;Restlaufzeit - 10 Euro&quot;]" DisplayName="If - Fahrzeugwechsel and Restlaufzeit 10 Euro" sap:VirtualizedContainerService.HintSize="588.8,2610.4" sap2010:WorkflowViewState.IdRef="If_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,2350.4" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_genehmigung_kennzeichen - Invoke Workflow File (VESPA\vespa_select_genehmigung_kennzeichen.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_35" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_select_genehmigung_kennzeichen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_search_parklizenznummer - Invoke Workflow File (VESPA\vespa_search_parklizenznummer.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_search_parklizenznummer.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_parklizenznummer">[str_parkID]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_38" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Ändern</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors found after Ändern" sap:VirtualizedContainerService.HintSize="449.6,427.2" sap2010:WorkflowViewState.IdRef="If_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Ändern BRE" Exception="[new BusinessRuleException(&quot;Bei der Suche der Parklizenznummer für die Änderung des Kennzeichens im Parkausweis sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_11" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_add_fahrzeuge - Invoke Workflow File (VESPA\vespa_add_fahrzeuge.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_39" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_add_fahrzeuge.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">1</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_kennzeichen2">[str_kennzeichen1]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_40" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If- Vespa errors after Fahrzeug 1" sap:VirtualizedContainerService.HintSize="449.6,427.2" sap2010:WorkflowViewState.IdRef="If_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Fahrzeug 1 BRE" Exception="[new BusinessRuleException(&quot;Nach der Eingabe der tech. Daten Fahrzeug 1 sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_12" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_validate_fahrzeug - Invoke Workflow File (VESPA\vespa_validate_fahrzeug.xaml)" sap:VirtualizedContainerService.HintSize="449.6,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_53" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_validate_fahrzeug.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">1</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,89.6" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[string.IsNullOrEmpty(str_kennzeichen2)=False]" DisplayName="If - Fahrzeug 2" sap:VirtualizedContainerService.HintSize="588.8,1351.2" sap2010:WorkflowViewState.IdRef="If_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,1097.6" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_add_fahrzeuge - Invoke Workflow File (VESPA\vespa_add_fahrzeuge.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_add_fahrzeuge.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">2</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_kennzeichen2">[str_kennzeichen2]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_27" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If Vespa errors after Fahrzeug 2" sap:VirtualizedContainerService.HintSize="449.6,427.2" sap2010:WorkflowViewState.IdRef="If_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Fahrzeug 2 BRE" Exception="[new BusinessRuleException(&quot;Nach der Eingabe der tech. Daten Fahrzeug 2 sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_validate_fahrzeug - Invoke Workflow File (VESPA\vespa_validate_fahrzeug.xaml)" sap:VirtualizedContainerService.HintSize="449.6,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_54" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_validate_fahrzeug.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">2</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,83.2" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[string.IsNullOrEmpty(str_kennzeichen3)=False]" DisplayName="If - Fahrzeug 3" sap:VirtualizedContainerService.HintSize="588.8,1247.2" sap2010:WorkflowViewState.IdRef="If_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,1080" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_add_fahrzeuge - Invoke Workflow File (VESPA\vespa_add_fahrzeuge.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_26" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_add_fahrzeuge.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">3</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_kennzeichen2">[str_kennzeichen3]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="449.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If Vespa errors after Fahrzeug 3" sap:VirtualizedContainerService.HintSize="449.6,427.2" sap2010:WorkflowViewState.IdRef="If_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173.6" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Fahrzeug 3 BRE" Exception="[new BusinessRuleException(&quot;Nach der Eingabe der tech. Daten Fahrzeug 3 sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="382.4,113.6" sap2010:WorkflowViewState.IdRef="Throw_8" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,83.2" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_validate_fahrzeug - Invoke Workflow File (VESPA\vespa_validate_fahrzeug.xaml)" sap:VirtualizedContainerService.HintSize="449.6,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_55" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_validate_fahrzeug.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="in_str_fahrzeugNr">3</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="483.2,24.8" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[str_case=&quot;Wohnsitzwechsel&quot; Or&#xA;str_case=&quot;Antrag auf Bewohnerparkausweis&quot; Or &#xA;(str_case=&quot;Fahrzeugwechsel&quot; And str_lizenzdauer&lt;&gt;&quot;Restlaufzeit - 10 Euro&quot;)]" DisplayName="If - Wohnsitzwechsel, Antrag auf Bewohnerparkausweis or Fahrzeugwechsel no Restlaufzeit" sap:VirtualizedContainerService.HintSize="588.8,2578.4" sap2010:WorkflowViewState.IdRef="If_22">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="528,2196" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_set_lizenzdaten - Invoke Workflow File (VESPA\vespa_set_lizenzdaten.xaml)" sap:VirtualizedContainerService.HintSize="494.4,180.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_set_lizenzdaten.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_gueltigkeit">[str_lizenzdauer]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[bool_halterbescheinigung]" sap:VirtualizedContainerService.HintSize="494.4,464" sap2010:WorkflowViewState.IdRef="If_32">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,236" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_set_halterbescheinigung - Invoke Workflow File (VESPA\vespa_set_halterbescheinigung.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_63" UnSafe="False" WorkflowFileName="VESPA\vespa_set_halterbescheinigung.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,89.6" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <If Condition="[string.IsNullOrEmpty(str_telefonnummer)]" DisplayName="If - phone number found in xml" sap:VirtualizedContainerService.HintSize="494.4,407.2" sap2010:WorkflowViewState.IdRef="If_9">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,24.8" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="449.6,240" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="util_harmonize_mobilenumber - Invoke Workflow File (utils\util_harmonize_mobilenumber.xaml)" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\util_harmonize_mobilenumber.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InOutArgument x:TypeArguments="x:String" x:Key="in_Mobilenumber">[str_telefonnummer]</InOutArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_mappingSheet">Data\Input\de_mobile_prefixes.xlsx</InArgument>
+                          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_NumberCorrected">[bool_numberCorrected]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_navigate_to_infotext - Invoke Workflow File (VESPA\vespa_navigate_to_infotext.xaml)" sap:VirtualizedContainerService.HintSize="494.4,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_navigate_to_infotext.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="494.4,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors after selecting Infotext Tab" sap:VirtualizedContainerService.HintSize="494.4,349.6" sap2010:WorkflowViewState.IdRef="If_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - Infotab navigation BRE" Exception="[new BusinessRuleException(&quot;Bei der Navigation von Lizenz zu Infotext sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_6" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_set_infotext - Invoke Workflow File (VESPA\vespa_set_infotext.xaml)" sap:VirtualizedContainerService.HintSize="494.4,184.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_set_infotext.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_antragsdatum">[str_antragsdatum]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_email">[str_email]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_einwilligungEmail">[str_einwilligungEmail]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_telefonnummer">[str_telefonnummer]</InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_mobilenumber">[bool_numberCorrected]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="494.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_59" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Erfassen</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="528,240" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_click_erfassen - Invoke Workflow File (VESPA\vespa_click_erfassen.xaml)" sap:VirtualizedContainerService.HintSize="494.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_60" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_click_erfassen.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mainButtonName">Ändern</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_erfassen_success - Invoke Workflow File (VESPA\vespa_check_erfassen_success.xaml)" sap:VirtualizedContainerService.HintSize="589,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_61" UnSafe="False" WorkflowFileName="VESPA\vespa_check_erfassen_success.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_success">[bool_success]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_check_error_messages - Invoke Workflow File (VESPA\vespa_check_error_messages.xaml)" sap:VirtualizedContainerService.HintSize="589,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="VESPA\vespa_check_error_messages.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_vespaErrors">[lst_vespaErrors]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <If Condition="[lst_vespaErrors.count&gt;0]" DisplayName="If - Vespa errors after final save" sap:VirtualizedContainerService.HintSize="589,350" sap2010:WorkflowViewState.IdRef="If_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw - Final save BRE" Exception="[new BusinessRuleException(&quot;Beim finalen Erfassen des Antrages sind folgende Fehlermeldungen in VESPA erschienen: &quot;+Environment.NewLine+Environment.NewLine+string.join(environment.NewLine, lst_vespaErrors))]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_5" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[lst_vespaErrors.count=0 and bool_success=false]" sap:VirtualizedContainerService.HintSize="589,419" sap2010:WorkflowViewState.IdRef="If_31">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw - Final save BRE" Exception="[new BusinessRuleException(&quot;Beim finalen Erfassen des Antrages sind keine Erfolgsmeldungen erschienen (Der Satz wurde verändert oder Der Satz wurde angelegt)&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_15" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[str_einwilligungEmail=&quot;false&quot;]" DisplayName="If E-Mail Einwilligung false -&gt; Move mail to RPA-Postversand" sap:VirtualizedContainerService.HintSize="589,616" sap2010:WorkflowViewState.IdRef="If_26">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,241" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="mail_move_mail_message - Invoke Workflow File (Mail\mail_move_mail_message.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_44" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_move_mail_message.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_mail_message">[mail_message]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mailFolder">[str_mailfolderPostversand]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_sharedMailbox">[str_sharedmailbox]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,241" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="mail_move_mail_message - Invoke Workflow File (Mail\mail_move_mail_message.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_move_mail_message.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_mail_message">[mail_message]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_mailFolder">[str_mailfolderSuccess]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_sharedMailbox">[str_sharedmailbox]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="625.6,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle application exception" sap:VirtualizedContainerService.HintSize="483.2,1063.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="queueitems" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Application Exception: &quot;+exception.message]" />
+              <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="Equals" sap:VirtualizedContainerService.HintSize="449.6,175.2" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="Failed, Abandoned" QueueName="[Config(&quot;OrchestratorQueueName&quot;).ToString]" Reference="[str_reference]" Result="[queueitems]" />
+              <If Condition="[queueitems.count&gt;3 and isnothing(mail_message)=False]" sap:VirtualizedContainerService.HintSize="449.6,605.6" sap2010:WorkflowViewState.IdRef="If_6">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,345.6" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Comment sap:VirtualizedContainerService.HintSize="382.4,88" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Screenshot?" />
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="validate_xml_data - Invoke Workflow File (utils\validate_xml_data.xaml)" sap:VirtualizedContainerService.HintSize="382.4,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_send_exception_mail.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_mail_message">[mail_message]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_str_pathdownload">[str_pathDownload]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_str_exceptionMessage">[str_case+environment.newline+environment.newline+exception.Message]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_str_sharedMailbox">[str_sharedmailbox]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <Rethrow sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="625.6,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle business exception" sap:VirtualizedContainerService.HintSize="416,488.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382.4,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;Business Exception: &quot;+exception.message]" />
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="validate_xml_data - Invoke Workflow File (utils\validate_xml_data.xaml)" sap:VirtualizedContainerService.HintSize="382.4,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="Mail\mail_send_exception_mail.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_mail_message">[mail_message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_pathdownload">[str_pathDownload]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_exceptionMessage">[str_case+environment.newline+environment.newline+exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_sharedMailbox">[str_sharedmailbox]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Rethrow sap:VirtualizedContainerService.HintSize="382.4,48" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

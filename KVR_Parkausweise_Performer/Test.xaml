@@ -1,0 +1,219 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Test" this:Test.in_str_mailFolder="Posteingang\RPA-Eingang" this:Test.in_str_sharedMailbox="rpa-test-parkausweise@muenchen.de" this:Test.in_str_mailID="&lt;439396089.89.1764851174494@muenchen.de&gt;" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_str_mailFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_sharedMailbox" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_mailID" Type="InArgument(x:String)" />
+    <x:Property Name="mail_messages" Type="OutArgument(scg:List(snm:MailMessage))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Test_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Test" sap:VirtualizedContainerService.HintSize="582,1916" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_mailUser" />
+      <Variable x:TypeArguments="ss:SecureString" Name="sstr_mailPw" />
+      <Variable x:TypeArguments="snm:MailMessage" Name="mailmessage" />
+      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="files" />
+      <Variable x:TypeArguments="x:String" Name="str_nachname" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_titel" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_xmlData" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="lst_validationErrors" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="read_xml_data - Invoke Workflow File (utils\read_xml_data.xaml)" sap:VirtualizedContainerService.HintSize="486,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\read_xml_data.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_pathXMLData">\\svmp13fsrds.muenchen.de\rds-fslogix-p$\Profiles\dv.00001234\VDI\UserData\Desktop\XML-Daten4.xml</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_xpathExpressions">[dt_xmlData]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="validate_xml_data1 - Invoke Workflow File (utils\validate_xml_data1.xaml)" sap:VirtualizedContainerService.HintSize="486,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" LogEntry="[UiPath.Core.Activities.LogEntryType.WithArguments]" LogExit="[UiPath.Core.Activities.LogExitType.WithArguments]" UnSafe="False" WorkflowFileName="utils\validate_xml_data.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_xmlData">[dt_xmlData]</InArgument>
+        <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_lst_validationErrors">[lst_validationErrors]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="486,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings", "Constants"}]</InArgument>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[GlobalVariablesNamespace.GlobalVariables.Config]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[config(&quot;rpa010_Robot Account&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="486,176" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sstr_mailPw]" Username="[str_mailUser]" />
+    <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" FilterByMessageIds="{x:Null}" FilterExpression="{x:Null}" Password="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[in_str_mailFolder]" DisplayName="Get Exchange Mail Messages" EmailAutodiscover="[str_mailUser]" ExchangeVersion="Exchange2013_SP1" GetAttachements="True" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_1" IsBodyHtml="True" MailFolder="Calendar" MarkAsRead="False" Messages="[mail_messages]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SecurePassword="[sstr_mailPw]" SharedMailbox="[in_str_sharedMailbox]" Top="100" User="[str_mailUser]" />
+    <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="snm:MailMessage">[mailmessage]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="snm:MailMessage">[mail_messages(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,337" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignorierte Aktivitäten" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[mailmessage.Body]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Das ist ein Test"+Environment.NewLine+environment.NewLine+mailmessage.Body]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:SaveExchangeAttachements ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" Password="{x:Null}" ResourceAttachments="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Save Exchange Attachments" EmailAutodiscover="[str_mailUser]" ExchangeVersion="Exchange2013_SP1" Files="[files]" FolderPath="C:\Users\ex.dwight\Desktop\KVR_Parkausweise\KVR_Parkausweise_Performer\Data\Input\attachments" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="SaveExchangeAttachements_1" MailMessage="[mailmessage]" SecurePassword="[sstr_mailPw]" User="[str_mailUser]" />
+    <ui:SendExchangeMail ApplicationId="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" AttachmentInputMode="FilePaths" AttachmentsCollection="[directory.GetFiles(&quot;C:\Users\ex.dwight\Desktop\KVR_Parkausweise\KVR_Parkausweise_Performer\Data\Input\attachments&quot;).ToList]" AuthenticationMode="UserNameAndPassword" Body="[mailmessage.Body]" DisplayName="Send Exchange Mail Message" EmailAutodiscover="[str_mailUser]" ExchangeVersion="Exchange2013_SP1" From="[str_mailUser]" sap:VirtualizedContainerService.HintSize="486,431" sap2010:WorkflowViewState.IdRef="SendExchangeMail_1" IsBodyHtml="True" IsDraft="False" SaveCopy="False" SecurePassword="[sstr_mailPw]" Subject="RPA-Fehler" To="rpa-test-parkausweise@muenchen.de" User="[str_mailUser]">
+      <ui:SendExchangeMail.AttachmentsBackup>
+        <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="FilePaths">
+          <usau:BackupSlot.BackupValues>
+            <scg:List x:TypeArguments="x:Object" x:Key="FilePaths" Capacity="2">
+              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">[mailmessage.Attachments]</InArgument>
+              <x:Reference>__ReferenceID0</x:Reference>
+            </scg:List>
+            <scg:List x:TypeArguments="x:Object" x:Key="Builder" Capacity="1">
+              <x:Null />
+            </scg:List>
+            <scg:List x:TypeArguments="x:Object" x:Key="Existing" Capacity="1">
+              <InArgument x:TypeArguments="scg:IEnumerable(upr:IResource)">[directory.GetFiles("C:\Users\ex.dwight\Desktop\KVR_Parkausweise\KVR_Parkausweise_Performer\Data\Input\attachments").ToList]</InArgument>
+            </scg:List>
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </ui:SendExchangeMail.AttachmentsBackup>
+      <ui:SendExchangeMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" x:Name="__ReferenceID0" Capacity="4">
+          <InArgument x:TypeArguments="x:String">C:\Users\ex.dwight\Desktop\KVR_Parkausweise\KVR_Parkausweise_Performer\Data\Input\Fehler.txt</InArgument>
+        </scg:List>
+      </ui:SendExchangeMail.Files>
+    </ui:SendExchangeMail>
+    <ui:DeleteMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" Password="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" DeleteMode="HardDelete" DisplayName="Delete Exchange Mail Message" EmailAutodiscover="[str_mailUser]" ExchangeVersion="Exchange2016" sap:VirtualizedContainerService.HintSize="486,114" sap2010:WorkflowViewState.IdRef="DeleteMail_1" MailMessage="[mailmessage]" SecurePassword="[sstr_mailPw]" User="[str_mailUser]" />
+  </Sequence>
+</Activity>
