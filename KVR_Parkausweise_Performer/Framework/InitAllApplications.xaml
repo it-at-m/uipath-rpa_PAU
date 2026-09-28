@@ -95,9 +95,10 @@
       <AssemblyReference>System.Net.Requests</AssemblyReference>
       <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
       <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="1004,1078.04" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="1124,867.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_vespaUsername" />
       <Variable x:TypeArguments="ss:SecureString" Name="sst_vespaPassword" />
@@ -108,16 +109,16 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;rpa010_vespaAccount&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credentia  - Vespa User" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sst_vespaPassword]" Username="[str_vespaUsername]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="vespa_login - Invoke Workflow File (VESPA\vespa_login.xaml)" sap:VirtualizedContainerService.HintSize="416,204" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="VESPA\vespa_login.xaml">
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;rpa010_vespaAccount&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credentia  - Vespa User" sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sst_vespaPassword]" Username="[str_vespaUsername]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_login - Invoke Workflow File (VESPA\vespa_login.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="VESPA\vespa_login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_urlVespa">[in_Config("URL_Vespa").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_urlVespa">[in_Config("rpa010_URL_Vespa").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_str_userVespa">[str_vespaUsername]</InArgument>
         <InArgument x:TypeArguments="ss:SecureString" x:Key="in_sstr_pwVespa">[sst_vespaPassword]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="vespa_select_parkausweis_mit_hauptwohnsitz - Invoke Workflow File (VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml)" sap:VirtualizedContainerService.HintSize="416,195" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="vespa_select_parkausweis_mit_hauptwohnsitz - Invoke Workflow File (VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml)" sap:VirtualizedContainerService.HintSize="450,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="VESPA\vespa_select_parkausweis_mit_hauptwohnsitz.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
