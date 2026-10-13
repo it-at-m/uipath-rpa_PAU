@@ -135,7 +135,7 @@
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1269,21570" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1522,21570" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_mailID" />
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mail_messages" />
@@ -205,7 +205,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_mailfolderinbox]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[config("MailfolderInbox").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[config("rpa010_MailfolderInbox").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -213,7 +213,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_sharedmailbox]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[config("SharedMailbox").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[config("rpa010_SharedMailbox").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -221,7 +221,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_pathdownload]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[Config("pathdownload").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[Config("rpa010_pathdownload").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
@@ -229,7 +229,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_mailfolderSuccess]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[Config("MailfolderSuccess").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[Config("rpa010_MailfolderSuccess").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
@@ -237,7 +237,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_mailfolderFailed]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[config("MailfolderFailed").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[config("rpa010_MailfolderFailed").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
@@ -263,7 +263,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_mailfolderPostversand]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[config("MailfolderPostversand").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[config("rpa010_MailfolderPostversand").ToString]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
               </scg:List>
