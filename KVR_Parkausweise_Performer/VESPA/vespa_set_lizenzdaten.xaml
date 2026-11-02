@@ -101,29 +101,29 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="vespa_set_lizenzdaten" sap:VirtualizedContainerService.HintSize="1645,1822" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="vespa_set_lizenzdaten" sap:VirtualizedContainerService.HintSize="1247.6000000000001,1818.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Edge: VES - Landeshauptstadt München - Vorgangsauswahl" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="511,1799" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Edge: VES - Landeshauptstadt München - Vorgangsauswahl" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="511.2,1795.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="509,1605" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Ausführen" sap:VirtualizedContainerService.HintSize="509.6,1601.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_str_gueltigkeit.ToLower]" sap:VirtualizedContainerService.HintSize="475,900" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[in_str_gueltigkeit.ToLower]" sap:VirtualizedContainerService.HintSize="476,897.6" sap2010:WorkflowViewState.IdRef="Switch`1_2">
               <Switch.Default>
-                <Throw Exception="[new BusinessRuleException(&quot;Die Lizenzdauer im Antrag beträgt weder 12 noch 24 Monate. Ausgwählte Lizenzdauer = &quot;+in_str_gueltigkeit)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                <Throw Exception="[new BusinessRuleException(&quot;Die Lizenzdauer im Antrag beträgt weder 12 noch 24 Monate. Ausgwählte Lizenzdauer = &quot;+in_str_gueltigkeit)]" sap:VirtualizedContainerService.HintSize="449.6,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
               </Switch.Default>
-              <Assign x:Key="12 monate - 30 euro" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign x:Key="12 monate - 30 euro" sap:VirtualizedContainerService.HintSize="449.6,142.4" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[in_str_gueltigkeit]</OutArgument>
                 </Assign.To>
@@ -131,7 +131,7 @@
                   <InArgument x:TypeArguments="x:String">1 Jahr</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign x:Key="24 monate - 60 euro" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign x:Key="24 monate - 60 euro" sap:VirtualizedContainerService.HintSize="449.6,142.4" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[in_str_gueltigkeit]</OutArgument>
                 </Assign.To>
@@ -139,13 +139,13 @@
                   <InArgument x:TypeArguments="x:String">2 Jahre</InArgument>
                 </Assign.Value>
               </Assign>
-              <Sequence x:Key="3 Jahre - 90 Euro" DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence x:Key="3 jahre - 90 euro" DisplayName="Body" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Set Variable Value" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign DisplayName="Set Variable Value" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="Assign_3">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[in_str_gueltigkeit]</OutArgument>
                   </Assign.To>
@@ -155,7 +155,7 @@
                 </Assign>
               </Sequence>
             </Switch>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Lizenzdaten'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="475,266" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Lizenzdaten'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="476,265.6" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="natk2.muenchen.de/cgi-bin/nww3vst/stdlhm/ZWANMPN0" DesignTimeRectangle="564, 268, 179, 30" DesignTimeScaleFactor="1.375" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl tag='DIV' aaname='Lizenzdaten  ' /&gt;" FuzzySelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl tag='DIV' aaname='Lizenzdaten  ' type='' class='neuntel navibar_item' check:text='Lizenzdaten&amp;#xA;&amp;#xA;Lizenz&amp;#xA;&amp;#xA;Infotext' /&gt;" Guid="5795355e-1528-47fd-be77-ff707b104009" InformativeScreenshot="d11d8c4c00131159613b9154fae00ed6.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='VES*' title='VES - Landeshauptstadt München*' /&gt;" SearchSteps="Selector" Version="V4" />
               </uix:NClick.Target>
@@ -173,12 +173,12 @@
                 </uix:VerifyExecutionOptions>
               </uix:NClick.VerifyOptions>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''Lizenz''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="475,194" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click ''Lizenz''" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="476,193.6" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="natk2.muenchen.de/cgi-bin/nww3vst/stdlhm/ZWANMPN0" DesignTimeRectangle="565, 268, 184, 24" DesignTimeScaleFactor="1.375" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl name='RELIZENZ' tag='INPUT' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl name='RELIZENZ' tag='INPUT' type='submit' class='item' aaname='Lizenz' check:text='Lizenz' /&gt;" Guid="926d120f-4d53-4b93-afc2-eeb6e1f172bd" ImageBase64="" InformativeScreenshot="b9d1d8c92c3f92a72c6d07d5c4af2642.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='VES*' title='VES - Landeshauptstadt München*' /&gt;" SearchSteps="Selector" Version="V4" />
               </uix:NClick.Target>
             </uix:NClick>
-            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Gültigkeit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="475,185" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Gültigkeit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="476,184.8" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="d98baee5-9e52-48bd-afd9-d34c8b8f2c4e" Version="V4">
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="natk2.muenchen.de/cgi-bin/nww3vst/stdlhm/ZWANMPN0" DesignTimeRectangle="618, 462, 18, 18" DesignTimeScaleFactor="1.375" ElementType="RadioButton" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl id='RBG4' tag='INPUT' /&gt;" FuzzyAccuracy="1" FuzzySelectorArgument="&lt;webctrl name='MAIN' tag='FRAME' /&gt;&lt;webctrl tag='INPUT' type='radio' class='breiteauto' aaname='' /&gt;" Guid="c9ada9b1-8982-47b5-8051-3c35b03ac07f" InformativeScreenshot="3a0456e2acb3b8d520aea60f6504f696.png" ScopeSelectorArgument="&lt;html app='msedge.exe' htmlwindowname='VES*' title='VES - Landeshauptstadt München*' /&gt;" SearchSteps="FuzzySelector" Version="V4">
                   <uix:TargetAnchorable.Anchors>
